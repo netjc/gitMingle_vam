@@ -116,7 +116,25 @@ class Project:
         """
         data={"id": id}
         return connectToMySQL(cls.db).query_db(query, data)
+
+# ******** ADD SAVED PROJECT *********
+    @classmethod
+    def save_project(cls, data):
+        query="""
+            INSERT INTO favorites (project_id, user_id) 
+            VALUES (%(project_id)s, %(user_id)s)
+        """
+        return connectToMySQL(cls.db).query_db(query, data)
     
+# ******** DELETE SAVED PROJECT *********
+    @classmethod
+    def delete_saved_project(cls, id):
+        query="""
+            DELETE FROM favorites
+            WHERE project_id=%(id)s;
+        """
+        data={"id": id}
+        return connectToMySQL(cls.db).query_db(query, data)    
 
 
 # -- STATIC METHODS BELOW -----------------------------------------------------------

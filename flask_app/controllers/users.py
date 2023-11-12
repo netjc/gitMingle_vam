@@ -65,8 +65,8 @@ def profile_page(id):
     }
 
     user1=user.User.get_user_with_projects({"id":id})
-    return render_template("profile.html", current_user=user.User.get_user_info({"id":id}), one_user=user1)
-    # return render_template("profile.html", one_user=user1, fav_projects=user.User.get_user_saved_projects(data), current_user=user.User.get_user_info(data2))
+    return render_template("profile.html", current_user=user.User.get_user_info({"id":id}), saved_projects=user.User.get_user_with_saved_projects({"id":id}), one_user=user1)
+
 
 # ******** UPDATE PROFILE - post & redirect *********
 @app.route("/users/update_user", methods=["POST"])

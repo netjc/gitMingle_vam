@@ -107,6 +107,30 @@ def delete(id):
     return redirect(f"/users/dashboard/{session['logged_in_id']}")
 
 
+# *********** SAVE PROJECT ***********
+@app.route("/projects/favorites/<int:id>")
+def fav_project(id):
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")        
+        return redirect("/users")
+    data={
+        "project_id":id,
+        "user_id":session['logged_in_id']
+    }
+    project.Project.save_project(data)
+    return redirect(f"/users/dashboard/{session['logged_in_id']}")
+
+# ******** DELETE SAVED PROJECT *********
+@app.route("/projects/delete_saved/<int:id>")
+def delete_fav(id):
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")        
+        return redirect("/users")
+    data={"id": id}
+    project.Project.delete_saved_project(id)
+    return redirect(f"/users/profile/{session['logged_in_id']}")
+
+
 # search by languages_used
 
 # @app.route("/projects/search_results/<int:languages_used>")
