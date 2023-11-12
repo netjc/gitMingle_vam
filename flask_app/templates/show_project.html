@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bigelow+Rules&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script> -->
+
+    <title>EAT (the) STREET!</title>
+</head>
+
+<body class="page_container">
+    <header class="w-100 d-flex justify-content-end align-items-center">
+        <div class="menu">
+            <a class="menu_item" href="/users/dashboard/{{session['logged_in_id']}}">Dashboard</a>
+            <a class="menu_item" href="/users/account_info/{{session['logged_in_id']}}">Account Info</a>
+            <a class="menu_item" href="/projects/new_project">Add Project</a>
+            <a class="menu_item" href="/users/user_logout">Logout</a>
+        </div>
+    </header>
+
+    <div class="main_container w-100 d-flex  align-items-center justify-content-center px-5 pt-3">
+
+        <div class="show_project_container w-75 h-100  d-flex flex-column justify-content-start align-items-start">
+            <h1 class="w-100">{{project1.project_name}}</h1>
+            <h2> Brief Description: {{project1.short_description}} </h2>
+            <h2>Team Positions Filled:<span>{{project1.current_team}}/{{project1.max_team}}</span></h2>
+            <h2> Repo Link: <a href="{{project1.github_link}}"> {{project1.github_link}} </a></h2><br>
+            <h2> Full Description: {{project1.long_description}} </h2><br>
+            <h2> Project Languages Used: {{project1.languages_used}} </h2>
+            <h2> Need Help With: {{project1.help_needed}} </h2><br>
+            <p class="w-100">Listed by: {{project1.project_creator.f_name}} on {{project1.created_at}}</p>
+
+                {% if project1.user_id == session['logged_in_id'] %}
+                <div class="d-flex">
+                    <a class="btn btn-dark" style="font-size: .8rem;" href="/projects/edit_project/{{project1.id}}"> EDIT LISTING</a>
+                    <a class="btn btn-danger ms-3" style="font-size: .8rem;" href="/projects/delete_project/{{project1.id}}">DELETE </a>
+                </div>
+                {% endif %}
+
+
+            <div class="w-100 d-flex justify-content-between align-items-center bg-light-subtle mt-5">
+
+                <a class="w-50 btn btn-dark ms-2" href="#"> Join Team </a><br>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="w-100 bg-dark text-light">
+        Created by gitMingle Team: Jonathan, Mario & Veronica 2023
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

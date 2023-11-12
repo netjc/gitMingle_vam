@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"> -->
+    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Bigelow+Rules&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script> -->
+
+    <title>gitMingle</title>
+
+
+</head>
+<body class="page_container index_bg">
+<!-- VALIDATION MESSAGES FROM OTHER PAGES (REDIRECTS NOT FROM FORMS) -->
+    
+    <!-- PROTECTED ROUTES -->
+    {% with messages = get_flashed_messages(category_filter=['login_required']) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-center text-bg-danger"><strong> {{message}} </strong></p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <!-- LOGOUT CONFIRMATION -->
+    {% with messages = get_flashed_messages(category_filter=['logout_success']) %}
+        {% if messages %}
+            {% for message in messages %}
+                <p class="text-center text-bg-warning"><strong> {{message}} </strong></p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+    <header class="w-100 d-flex justify-content-between align-items-center pt-2 pb-2">
+        <div class="w-50">
+            <img class="w-50 ms-3" src="../static/images/eatStGrnLogo.png">
+
+        </div>
+
+    </header>
+
+    <div class="main_container w-100 d-flex bg-light gap-5">
+
+<!-- PAGE LEFT SIDE -->
+        <div class="w-100 d-flex flex-column ms-5 mt-4">
+            <h3 class="form_header w-50 justify-content-start">Welcome</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi praesentium, voluptatibus nulla reiciendis, odio ipsum dolorem, alias iusto eius consequuntur repellendus ipsa incidunt quam? Let's mingle!</p>
+            <img class="w-75 mt-4 mx-5" src="../static/images/collaborators.svg">
+
+            
+        </div>
+
+<!-- PAGE RIGHT SIDE -->
+        <div class="w-100 h-100 d-flex flex-column align-items-start justify-content-start me-5 pt-4 pb-5">
+            <h3 class="form_header w-50 justify-content-start">Login</h3>
+            <div class="forms_container w-100 d-flex flex-column justify-content-start p-4 border-5">
+                
+                <!-- LOGIN VALIDATION -->
+                {% with messages = get_flashed_messages(category_filter=['user_login']) %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <p class="text-bg-danger"><strong> {{message}} </strong></p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- LOGIN FORM -->
+                <form class="w-100 text-light" action='/users/user_login' method='post'>
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='email'>Email:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='email'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='password'>Password:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='password' style="font-size: 1em; font-weight: bold;" name='password'>
+                    </div>
+                    <input class="btn btn-outline-light mt-2" style="font-size: 1em;" type='submit' value='LOGIN'>
+                </form>
+            </div><br>
+            <h3 class="form_header w-100 justify-content-start">Create an Account</h3>
+            <div class="forms_container w-100 d-flex flex-column justify-content-start align-items-start p-4 border-5">
+                <form class="w-100 text-light" action='/users/create_user' method='post'>
+                    <!-- REGISTRATION VALIDATION -->
+                    {% with messages = get_flashed_messages(category_filter=['user_registration']) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="text-bg-danger"><strong> {{message}} </strong></p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <!-- REGISTRATION FORM -->
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='f_name'>First Name:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='f_name'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='l_name'>Last Name:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='l_name'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='email'>Email:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='email'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='position_title'>Developer Type (front-end, back-end, full-stack, ui/ux designer):</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='position_title'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='github_url'>Github User URL:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='github_url'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='password'>Password:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='password' style="font-size: 1em; font-weight: bold;" name='password'>
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for='confirm_pw'>Confirm PW:</label>
+                        <input class="w-75 form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type='password' style="font-size: 1em; font-weight: bold;" name='confirm_pw'>
+                    </div>
+
+                    <input class="btn btn-outline-light mt-2" style="font-size: 1em;" type='submit' value='REGISTER'>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+
+    <footer class="w-100 bg-dark text-light">
+        Created by gitMingle Team: Jonathan, Mario & Veronica 2023
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

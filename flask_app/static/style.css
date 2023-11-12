@@ -1,0 +1,158 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-size: .9rem; 
+
+}
+
+header{
+    background-image: linear-gradient(to bottom right,#019af9, rgb(43, 28, 68));
+}
+
+footer{
+    width: 94vw;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: bold;
+    color:white;
+}
+.menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding:5px 20px;
+    background-color: rgb(33,37,41);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+    font-size: .8rem;
+}
+
+menu p{
+    font-weight: bold;
+    color: white;
+}
+/* MENU LINKS */
+/* unvisited link */
+.menu a:link {
+    /* font-weight: bold; */
+    color: white;
+    text-decoration: none;
+}
+
+/* visited link */
+.menu a:visited {
+    color: white;
+}
+
+/* mouse over link */
+.menu a:hover {
+    color: red;
+}
+
+/* selected link */
+.menu a:active {
+    color: rgb(255, 234, 0);
+}
+
+.page_container {
+    max-width:94vw;
+    /* height:100vh; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 3vw;
+    /* background-color: rgb(77, 77, 77); */
+    background-color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
+}
+
+.main_container {
+    background-color: white;
+    /* background-image: url("/static/images/lights.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size:cover; */
+    font-size: .9rem;
+}
+
+.add_project p, .add_project a{
+    font-size: .8rem;
+    font-weight: bold;
+}
+
+.add_project_container{
+    border:1px solid #cbcedb;
+    border-radius: 25px;
+    padding:10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.add_project_container p{
+    font-size: .8rem;
+}
+
+.forms_container{
+    background-color: rgb(63,61,86);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+
+form, form label, form input {
+    font-size: .8rem;
+}
+
+.table_container{
+    border:1px solid #cbcedb;
+    border-radius: 25px;
+    padding:10px;
+}
+
+.table th, td, a {
+    font-size: .75rem;
+}
+
+.search_label{
+    font-size: .8rem;
+}
+
+.show_project_container{
+    border:1px solid #cbcedb;
+    border-radius: 25px;
+    padding:50px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.show_project_container h1{
+    font-size: 2em;
+}
+
+.show_project_container h2{
+    font-size: 1em;
+}
+
+.show_project_container p{
+    font-size: .8rem;
+}
+
+.update_user_container{
+    border:1px solid #cbcedb;
+    border-radius: 25px;
+    padding:10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.list_container{
+    border:1px solid #cbcedb;
+    border-radius: 25px;
+    padding:10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.account_info_header h3{
+    color:#009700;
+}
