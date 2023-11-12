@@ -44,7 +44,7 @@
                 <div class="menu">
                     <p>Hi {{one_user.f_name}}!</p>
                     <a class="menu_item" href="/projects/new_project">Add Project</a>
-                    <a class="menu_item" href="/users/my_profile/{{session['logged_in_id']}}">My Profile</a>
+                    <a class="menu_item" href="/users/profile/{{session['logged_in_id']}}">My Profile</a>
                     <a class="menu_item" href="/users/user_logout">Logout</a>
                 </div>
         </header>
@@ -94,6 +94,76 @@
                 </div>
                 {% endfor %}
             </div><br>
+
+<!-- USERS LOOKING TO MINGLE - SHOW ALL USERS -->
+
+            <div class="h-100 bg-light d-flex justify-content-start m-5 p-5 shadow-sm border-5">
+                <!-- FULL STACK DEVS -->
+                <table class="w-25 table table-striped">
+                    <thead>
+                        <th>FULL STACK DEVS</th>
+                    </thead>
+                    <tbody>
+                        {% for user in all_users %}
+                            {% if user.position_title == "Full Stack Developer" %}
+                            <tr>
+                                <td><a href="/users/profile/{{user.id}}">+</a>{{user.f_name}} {{user.l_name}}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- BACK-END DEVS -->
+                <table class="w-25 table table-striped">
+                    <thead>
+                        <th>BACK-END DEVS</th>
+                    </thead>
+                    <tbody>
+                        {% for user in all_users %}
+                            {% if user.position_title == "Back-end Developer" %}
+                            <tr>
+                                <td><a href="/users/profile/{{user.id}}">+</a>{{user.f_name}} {{user.l_name}}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- FRONT-END DEVS -->
+                <table class="w-25 table table-striped">
+                    <thead>
+                        <th>FRONT-END DEVS</th>
+                    </thead>
+                    <tbody>
+                        {% for user in all_users %}
+                            {% if user.position_title == "Front-end Developer" %}
+                            <tr>
+                                <td><a href="/users/profile/{{user.id}}">+</a>{{user.f_name}} {{user.l_name}}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <!-- UI/UX DESIGNERS -->
+                <table class="w-25 table table-striped">
+                    <thead>
+                        <th>UI/UX DESIGNERS</th>
+                    </thead>
+                    <tbody>
+                        {% for user in all_users %}
+                            {% if user.position_title == "UI/UX Designers" %}
+                            <tr>
+                                <td><a href="/users/profile/{{user.id}}">+</a>{{user.f_name}} {{user.l_name}}</td>
+                            </tr>
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <br>
+            </div>
 
         </div>
         <footer class="w-100 bg-primary text-light">

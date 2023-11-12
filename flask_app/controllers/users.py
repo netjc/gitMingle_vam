@@ -55,7 +55,7 @@ def logout():
     return redirect("/")
 
 # ******** UPDATE PROFILE - render *********
-@app.route("/users/my_profile/<int:id>")
+@app.route("/users/profile/<int:id>")
 def profile_page(id):
     if "logged_in_id" not in session:
         flash("You must be logged in to view the requested page.", "login_required")
@@ -65,7 +65,7 @@ def profile_page(id):
     }
 
     user1=user.User.get_user_with_projects({"id":id})
-    return render_template("profile.html", current_user=user.User.get_user_info(data), one_user=user1)
+    return render_template("profile.html", current_user=user.User.get_user_info({"id":id}), one_user=user1)
     # return render_template("profile.html", one_user=user1, fav_projects=user.User.get_user_saved_projects(data), current_user=user.User.get_user_info(data2))
 
 # ******** UPDATE PROFILE - post & redirect *********
@@ -76,12 +76,12 @@ def update_user_info():
         return redirect("/")
         
     if not user.User.validate_user_update(request.form):
-        return redirect(f"/users/my_profile/{session['logged_in_id']}")
+        return redirect(f"/users/profile/{session['logged_in_id']}")
     
 
     user.User.update_user(request.form)
     flash("User update SUCCESSFUL!", "user_update_success")
-    return redirect(f"/users/my_profile/{session['logged_in_id']}")
+    return redirect(f"/users/profile/{session['logged_in_id']}")
 
 # ******** UPDATE PW - post & redirect *********
 @app.route("/users/update_pw", methods=["POST"])
@@ -91,7 +91,7 @@ def new_pw():
         return redirect("/")
         
     if not user.User.validate_pw_update(request.form):
-        return redirect(f"/users/my_profile/{session['logged_in_id']}")
+        return redirect(f"/users/profile/{session['logged_in_id']}")
     
     hashed_pw=bcrypt.generate_password_hash(request.form["password"])
 
@@ -101,4 +101,4 @@ def new_pw():
     }
     user.User.update_pw(data)
     flash("Password UPDATED!", "pw_update_success")
-    return redirect(f"/users/my_profile/{session['logged_in_id']}")
+    return redirect(f"/users/profile/{session['logged_in_id']}")

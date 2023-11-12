@@ -91,8 +91,21 @@ class User:
             one_project=project.Project(project_data)
             one_user.listed_projects.append(one_project)
         return one_user
+    
+# ******** SHOW ALL userS *********
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users;"
 
-# ******** UPDATE *********
+        results = connectToMySQL(cls.db).query_db(query)
+
+        all_users = []
+
+        for user in results:
+            all_users.append(cls(user))
+        return all_users    
+
+# ******** UPDATE USER PROFILE *********
     @classmethod
     def update_user(cls, data):
         query = """

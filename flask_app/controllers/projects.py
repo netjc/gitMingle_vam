@@ -21,7 +21,7 @@ def user_page(id):
         "id": session["logged_in_id"]
     }
 
-    return render_template("dashboard.html", all_projects=project.Project.get_all_projects(), one_user=user.User.get_user_info(data2))
+    return render_template("dashboard.html", all_projects=project.Project.get_all_projects(), one_user=user.User.get_user_info(data2), all_users=user.User.get_all())
 
 # ******** ADD new projects - render *********
 @app.route("/projects/new_project")
