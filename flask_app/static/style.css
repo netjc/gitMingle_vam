@@ -158,3 +158,27 @@ form, form label, form input {
     margin-bottom: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
+
+/* MENU LINKS */
+/* unvisited link */
+.card_links a:link {
+    color: black;
+    text-decoration: none;
+}
+
+/* visited link */
+.card_links a:visited {
+    color:black
+}
+
+/* mouse over link */
+.card_links a:hover {
+    color: green;
+    font-weight: bold;
+}
+
+/* selected link */
+.card_links a:active {
+    font-weight: bold;
+    color: rgb(255, 234, 0);
+}
