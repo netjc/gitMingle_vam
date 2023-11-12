@@ -15,6 +15,8 @@ def user_page(id):
     if "logged_in_id" not in session:
         flash("You must be logged in to view the requested page.", "login_required")        
         return redirect("/users")
+    
+
     data2={
         "id": session["logged_in_id"]
     }

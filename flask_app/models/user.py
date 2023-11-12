@@ -64,13 +64,40 @@ class User:
         
         return cls(results[0])
 
+# ******** GET FOOD TRUCKS THE USER HAS LISTED/ADDED *********
+    @classmethod
+    def get_user_with_projects(cls, data):
+        query = "SELECT * FROM users LEFT JOIN projects ON projects.user_id =users.id WHERE users.id = %(id)s;"
+        
+        results = connectToMySQL(cls.db).query_db(query, data )
+
+        one_user = cls(results[0])
+
+        for row in results:
+            project_data = {
+                "id": row["projects.id"],
+                "user_id": row["user_id"],
+                "project_name": row["project_name"],
+                "short_description": row["short_description"],
+                "max_team":row["max_team"],
+                "current_team": row["current_team"],
+                "github_link": row["github_link"],
+                "long_description": row["long_description"],
+                "languages_used": row["languages_used"],
+                "help_needed": row["help_needed"],                
+                "created_at": row["projects.created_at"],
+                "updated_at": row["projects.updated_at"]
+                }
+            one_project=project.Project(project_data)
+            one_user.listed_projects.append(one_project)
+        return one_user
 
 # ******** UPDATE *********
     @classmethod
     def update_user(cls, data):
         query = """
             UPDATE users
-            SET f_name=%(f_name)s, l_name=%(l_name)s, email=%(email)s, position_title=%(position_title)s, github_url=%(github_url)s, password=%(password)s, updated_at=NOW() 
+            SET f_name=%(f_name)s, l_name=%(l_name)s, email=%(email)s, position_title=%(position_title)s, github_url=%(github_url)s, updated_at=NOW() 
             WHERE id = %(id)s;
         """
         return connectToMySQL(cls.db).query_db(query,data)
@@ -199,5 +226,6 @@ class User:
         if data["password"] != data["confirm_pw"]:
             is_valid=False
             flash(" ! Passwords do not match. Try again!", "pw_update")
+
         return is_valid    
 

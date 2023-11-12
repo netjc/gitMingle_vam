@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
-    font-size: .9rem; 
+    font-size: 1rem; 
 
 }
 
@@ -14,28 +14,28 @@ header{
 footer{
     width: 94vw;
     text-align: center;
-    font-size: .8rem;
+    font-size: .9rem;
     font-weight: bold;
-    color:white;
 }
 .menu {
+    width:10vw;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     padding:5px 20px;
     background-color: rgb(33,37,41);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
-    font-size: .8rem;
+
 }
 
-menu p{
+.menu p{
     font-weight: bold;
     color: white;
+    font-size: 1rem;
 }
 /* MENU LINKS */
 /* unvisited link */
 .menu a:link {
-    /* font-weight: bold; */
     color: white;
     text-decoration: none;
 }
@@ -52,6 +52,7 @@ menu p{
 
 /* selected link */
 .menu a:active {
+    font-weight: bold;
     color: rgb(255, 234, 0);
 }
 
@@ -95,6 +96,8 @@ menu p{
 .forms_container{
     background-color: rgb(63,61,86);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 25px;
+
 
 }
 
@@ -107,6 +110,9 @@ form, form label, form input {
     border:1px solid #cbcedb;
     border-radius: 25px;
     padding:10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    
 }
 
 .table th, td, a {
@@ -145,7 +151,7 @@ form, form label, form input {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
-.list_container{
+.project_card{
     border:1px solid #cbcedb;
     border-radius: 25px;
     padding:10px;
