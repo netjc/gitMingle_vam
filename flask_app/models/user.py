@@ -64,7 +64,7 @@ class User:
         
         return cls(results[0])
 
-# ******** GET FOOD TRUCKS THE USER HAS LISTED/ADDED *********
+# ******** GET PROJECTS THE USER HAS LISTED/ADDED *********
     @classmethod
     def get_user_with_projects(cls, data):
         query = "SELECT * FROM users LEFT JOIN projects ON projects.user_id =users.id WHERE users.id = %(id)s;"
