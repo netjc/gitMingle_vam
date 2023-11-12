@@ -53,3 +53,58 @@ def logout():
     session.clear()
     flash ("You are now LOGGED OUT!", "logout_success")
     return redirect("/")
+
+# ******** UPDATE PROFILE - render *********
+@app.route("/users/my_profile/<int:id>")
+def profile_page(id):
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")
+        return redirect("/")
+
+    data={"id": session["logged_in_id"]
+    }
+
+    return render_template("profile.html", current_user=user.User.get_user_info(data))
+    # return render_template("profile.html", one_user=user1, fav_projects=user.User.get_user_saved_projects(data), current_user=user.User.get_user_info(data2))
+
+# ******** UPDATE PROFILE - post & redirect *********
+@app.route("/users/update_user", methods=["POST"])
+def update_user_info():
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")
+        return redirect("/")
+        
+    if not user.User.validate_user_update(request.form):
+        return redirect(f"/users/my_profile/{session['logged_in_id']}")
+    
+    data={
+        "f_name":request.form["f_name"],
+        "l_name":request.form["l_name"],
+        "email":request.form["email"],
+        "position_title":request.form["position_title"],        
+        "github_url":request.form["github_url"],
+    }
+
+    user.User.update_user(request.form)
+    flash("User update SUCCESSFUL!", "user_update_success")
+    return redirect(f"/users/my_profile/{session['logged_in_id']}")
+
+# ******** UPDATE PROFILE - post & redirect *********
+@app.route("/users/update_pw", methods=["POST"])
+def new_pw():
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")
+        return redirect("/")
+        
+    if not user.User.validate_pw_update(request.form):
+        return redirect(f"/users/my_profile/{session['logged_in_id']}")
+    
+    hashed_pw=bcrypt.generate_password_hash(request.form["password"])
+
+    data={
+        "password":hashed_pw
+    }
+
+    user.User.update_pw(request.form)
+    flash("Password UPDATED!", "pw_update_success")
+    return redirect(f"/users/my_profile/{session['logged_in_id']}")

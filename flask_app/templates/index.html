@@ -90,6 +90,7 @@
                 </form>
             </div><br>
             <h3 class="form_header w-100 justify-content-start">Create an Account</h3>
+            <!-- REG FORM SECTION -->
             <div class="forms_container w-100 d-flex flex-column justify-content-start align-items-start p-4 border-5">
                 <form class="w-100 text-light" action='/users/create_user' method='post'>
                     <!-- REGISTRATION VALIDATION -->
@@ -101,7 +102,7 @@
                         {% endif %}
                     {% endwith %}
 
-                    <!-- REGISTRATION FORM -->
+                    <!-- ACTUAL REG FORM -->
                     <div class="w-100 d-flex pb-1 align-items-center">
                         <label class="w-25 form-label" for='f_name'>First Name:</label>
                         <input class="w-75 form-control bg-light-subtle text-primary px-1 border-1 shadow-sm" type='text' style="font-size: 1em; font-weight: bold;" name='f_name'>

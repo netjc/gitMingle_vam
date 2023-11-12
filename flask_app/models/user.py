@@ -70,10 +70,20 @@ class User:
     def update_user(cls, data):
         query = """
             UPDATE users
-            SET f_name=%(f_name)s, l_name=%(l_name)s, email=%(email)s, position_title=%(position_title)s, github_url=%(github_url)s, updated_at=NOW() 
+            SET f_name=%(f_name)s, l_name=%(l_name)s, email=%(email)s, position_title=%(position_title)s, github_url=%(github_url)s, password=%(password)s, updated_at=NOW() 
             WHERE id = %(id)s;
         """
         return connectToMySQL(cls.db).query_db(query,data)
+    
+# ******** UPDATE PW*********
+    @classmethod
+    def update_pw(cls, data):
+        query = """
+            UPDATE users
+            SET password=%(password)s, updated_at=NOW() 
+            WHERE id = %(id)s;
+        """
+        return connectToMySQL(cls.db).query_db(query,data)    
 
 # ************ VALIDATIONS ***************
     @staticmethod
@@ -144,4 +154,50 @@ class User:
             return False
 
         return one_user
+    
+    @staticmethod
+    def validate_user_update(data):
+        is_valid = True
+
+        if len(data["f_name"]) < 3:
+            flash(" ! First Name must be at least 3 characters. Original data retained.", "user_update")
+            is_valid = False
+
+        if len(data["l_name"]) < 3:
+            flash(" ! Last Name must be at least 3 characters. Original data retained.", "user_update")
+            is_valid = False
+
+        if len(data["email"]) == 0:
+            flash(" ! Email cannot be left empty. Original data retained.", "user_update")
+            is_valid = False
+
+        if len(data["email"]) < 8:
+            flash(" ! Email must be at least 8 characters. Original data retained.", "user_update")
+            is_valid = False
+
+        if not EMAIL_REGEX.match(data["email"]): 
+            flash(" ! Invalid email format. Original data retained.", "user_update")
+            is_valid = False
+
+        if len(data["github_url"]) == 0:
+            flash(" ! Github user URL cannot be left empty. Original data retained.", "user_update")
+            is_valid = False
+
+        if not URL_REGEX.match(data["github_url"]): 
+            flash(" ! Invalid url format. Try again.", "user_update")
+            is_valid = False
+        return is_valid
+    
+    @staticmethod
+    def validate_pw_update(data):
+        is_valid = True
+
+        if len(data["password"]) < 8:
+            flash(" ! Password must be at least 8 characters. Password NOT updated.", "pw_update")
+            is_valid = False
+
+        if data["password"] != data["confirm_pw"]:
+            is_valid=False
+            flash(" ! Passwords do not match. Try again!", "pw_update")
+        return is_valid    
 

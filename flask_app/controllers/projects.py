@@ -107,21 +107,21 @@ def delete(id):
 
 # search by languages_used
 
-@app.route("/projects/search_results/<int:languages_used>")
-def results_page(languages_used):
-    if "logged_in_id" not in session:
-        flash("You must be logged in to view the requested page.", "login_required")        
-        return redirect("/")
+# @app.route("/projects/search_results/<int:languages_used>")
+# def results_page(languages_used):
+#     if "logged_in_id" not in session:
+#         flash("You must be logged in to view the requested page.", "login_required")        
+#         return redirect("/")
     
-    data={
-        "languages_used":languages_used
-    }
-    return render_template("search_results.html", langs_used_search=project.Project.get_by_language(data))
+#     data={
+#         "languages_used":languages_used
+#     }
+#     return render_template("search_results.html", langs_used_search=project.Project.get_by_language(data))
 
-@app.route("/projects/project_languages_search", methods=["POST"])
-def lang_search():
-    if "logged_in_id" not in session:
-        flash("You must be logged in to view the requested page.", "login_required")        
-        return redirect("/")
+# @app.route("/projects/project_languages_search", methods=["POST"])
+# def lang_search():
+#     if "logged_in_id" not in session:
+#         flash("You must be logged in to view the requested page.", "login_required")        
+#         return redirect("/")
 
-    return redirect(f"/projects/search_results/{request.form['languages_used']}")
+#     return redirect(f"/projects/search_results/{request.form['languages_used']}")
