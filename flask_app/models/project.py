@@ -203,8 +203,8 @@ class Project:
         #     flash(" ! Invalid url format. Try again.", "projects")
         #     is_valid = False
 
-        if len(data["long_description"]) <30:
-            flash("Incorrect zip code format. Please enter 5-digit zip code.", "projects")
+        if len(data["long_description"]) <1:
+            flash("Description cannot be left empty.", "projects")
             is_valid = False
 
         if len(data["languages_used"]) <1:
