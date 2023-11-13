@@ -84,7 +84,7 @@ What will be included in your MVP, the parts that will be created first to satis
 
 MVP Responsibilities: 
     { 
-        Mario: Front-End Design / GitHub workflow; 
+        Mario Longoria: Front-End Design / GitHub workflow; 
         Veronica Mendez: Front-End (initial HTML and Bootstrap setup, logo design)/ Back-end (CRUD structure); 
         Jonathan Campbell - Back-End / Database
     }
