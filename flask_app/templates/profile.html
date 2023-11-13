@@ -28,9 +28,58 @@
         </div>
     </header>
 
-    <div class="main_container w-100 h-100 d-flex justify-content-between px-4">
+    <div class="main_container w-100 h-100 d-flex justify-content-between gap-5 px-4">
+        {% if current_user.id != session['logged_in_id'] %}
+        <div class="update_user_container w-100 d-flex flex-column justify-content-start align-items-start p-4 my-5">
+            <h3 class="w-100">{{current_user.f_name}} {{current_user.l_name}}</h3>
+            <h4> Developer Type: {{current_user.position_title}}</h4>
+            <h4> GitHub User Profile: <a href="{{current_user.github_url}}"> {{current_user.github_url}} </a></h4><br>
+        </div>
+<!-- *****************************PROJECTS ADDED BY USER******************************* -->
+        <div class="w-100 d-flex flex-column align-items-center justify-content-start pt-5 mb-3 border-5">
+            <h4 class="w-100 justify-content-start">Added Projects</h4>
+            <div class="w-100 table_container bg-light  mb-5 px-5">
+                <table class="table table-striped">
+                    {% for one_project in one_user.listed_projects %}
+                    <tr>
+                        <td><strong>{{one_project.project_name}}</strong></td>
+                        <td>
+                            <a href="/projects/edit_project/{{one_project.id}}"> EDIT</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+<!-- ***************************** TEAMS/PROJECTS USER HAS JOINED ******************************* -->
+            <h4 class="w-100 justify-content-start">Joined Projects</h4>  
+            <div class="w-100 d-flex flex-column">           
+                {% for team in joined_projects %}
+                <div class="project_card card w-100 me-2 mb-2">
+                    <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                        <h3 class="text-light"><strong>{{team.project_name}}</strong></h3>
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <p><strong>Brief Description:</strong> {{team.short_description}}</p><br>
+                    </div>
+
+                    <div class="w-100 card-footer d-flex flex-column">
+                        <h4 class="w-100 bg-warning d-flex justify-content-center m-0"><strong>Current Team: <span>{{team.current_team}}/{{team.max_team}}</span></strong></h4>
+
+                        <div class="w-100 d-flex justify-content-evenly my-2">
+                            <a class="w-75 btn btn-dark me-2" style="font-size: .8rem;" href="/projects/show_project/{{team.project_id}}"> Show More </a>
+                            <a class="w-75 btn btn-dark ms-2" style="font-size: .8rem;" href="/projects/join_project/{{team.project_id}}"> Join Now </a><br>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>            
+        {% endif %}
+
+
+
+        {% if current_user.id == session['logged_in_id'] %}
         <div class="w-100 h-100 d-flex flex-column align-items-center px-4 pt-5">
-            
             <!-- UPDATE FORM SECTION -->
             <div class="forms_container w-100 d-flex flex-column justify-content-start align-items-start p-4 mb-3 border-5">
                 <form class="w-100 text-light" action='/users/update_user' method='post'>
@@ -205,7 +254,8 @@
                 {% endfor %}
             </div>            
 
-        </div>        
+        </div>
+        {% endif %}        
     </div>
 </div>
 
