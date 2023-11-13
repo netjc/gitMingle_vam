@@ -21,9 +21,8 @@ class Project:
         self.help_needed=data["help_needed"]
         self.created_at=data["created_at"]
         self.updated_at=data["updated_at"]
-        # TENTATIVE - NOT PART OF DB
+        # NOT PART OF DB
         self.project_creator=None
-        self.potential_contributors=[]
 
 
 # ******** ADD/CREATE NEW project*********
@@ -57,7 +56,7 @@ class Project:
         return all_projects
 # --GET ALL FTs END-----------------------------------
 
-# ******** GET ALL PROJECTS BY LANGUAGE USED *********
+# ******** FOR SEARCH - GET ALL PROJECTS BY LANGUAGE USED *********
     # @classmethod
     # def get_by_language(cls, data):
     #     query = """

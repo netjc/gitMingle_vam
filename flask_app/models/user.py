@@ -24,10 +24,11 @@ class User:
         self.password=data["password"]
         self.created_at=data["created_at"]
         self.updated_at=data["updated_at"]
-        # TENTATIVE - NOT PART OF DB
+        # NOT PART OF DB
         self.listed_projects=[] 
-        self.join_project_requests=[]
-        self.projects_joined=[]
+        # PENDING - FOR PROJECT ADMIN 
+        # self.join_project_requests=[]
+        # self.projects_joined=[]
 
 
 # ******** ADD/CREATE NEW user *********
