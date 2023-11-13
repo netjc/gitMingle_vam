@@ -6,8 +6,11 @@ from flask import Flask, render_template, redirect, request, session, flash
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 from flask_app.models import user, project
-
-
+#file upload
+import os
+from os.path import join, dirname, realpath
+UPLOAD_FOLDER = "static/images"
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # ******** ROOT ROUTE *********
 @app.route("/users/dashboard/<int:id>")
@@ -49,6 +52,10 @@ def create_project():
     data2={
         "id": session["logged_in_id"]
     }
+    #File upload
+    file = request.files['file']
+    if file.filename != '':
+        file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'],request.form['project_name']))
     flash("Project added!", "project_add_success")
     return redirect(f"/users/dashboard/{session['logged_in_id']}")
     # return redirect(f"/projects/show_project/{one_project_id}")

@@ -15,7 +15,7 @@
 
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}" defer></script>
 
-    <title>EAT (the) STREET!</title>
+    <title>gitMingle!</title>
 </head>
 
 <body class="page_container">
@@ -38,6 +38,7 @@
             <h2> Full Description: {{project1.long_description}} </h2><br>
             <h2> Project Languages Used: {{project1.languages_used}} </h2>
             <h2> Need Help With: {{project1.help_needed}} </h2><br>
+            <img src="../../static/images/{{project1.project_name}}" alt="Please upload your project photo">
             <p class="w-100">Listed by: <a href="/users/profile/{{project1.user_id}}">{{project1.project_creator.f_name}}</a> on {{project1.created_at}}</p>
 
                 {% if project1.user_id == session['logged_in_id'] %}
