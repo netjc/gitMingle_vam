@@ -1,0 +1,112 @@
+All Project need the following:
+
+Description of the project: 
+    {
+        gitMingle - Similar to Devs on Deck assignment, but meant exclusively for individuals, not organizations, who are looking for interesting projects to join, or who are trying to build their own "dream" projects (personal projects), and looking for some help.
+    }
+
+Which stack are you building it in? 
+    { Python }
+
+Project is on GitHub: 
+    { YES- https://github.com/esMario/gitMingle }
+
+.gitignore file in root folder: 
+    { YES. We'll have it. }
+
+All of CRUD* on a non-User table: 
+    { 
+        Non-user table: Projects
+        Create: Create Project
+        Read: After login, dashboard/hub "show all" projects. On "view/show more", show individual project. (user table - show user profile)
+        Update (includes user table): Update user profile, update user password, update project info
+        Delete: delete projects
+    }
+
+CSS implemented, and possibly other static content: 
+    {   Custom CSS and Bootstrap    }
+
+Data is validated upon create and edit, errors show: 
+    { 
+        Non-user table: Validations on "create" and "update" project. 
+    }
+
+Python & Java also need the following:
+
+Login and Registration with validations: 
+    {   
+        YES - validations on login, registration, profile update, password update.
+    }
+
+Protected routes (Must be logged in to view): 
+    {
+        YES- Protected routes on everything past the index (user reg/login). Using validations to safeguard data and, for this project, will also ensure no empty data fields. 
+    }
+
+One-to-many relationship: 
+    {   Users-to-Projects   }
+
+What will be included in your MVP, the parts that will be created first to satisfy the project requirements? 
+    { 
+        LOGIN & REGISTRATION
+        Login and registration ("CREATE_USER") with validations such as: Usernames must not exist, Password Requirements,Password and Confirm Password not same, Name length requirements
+
+        DASHBOARD/HUB
+        Dashboard that displays all projects ("SHOW_ALL_PROJECTS") and all users ("SHOW_ALL_USERS_BY_DEV_TYPE").
+        - "Show More" button on a listed project takes you to individual project page ("SHOW_ONE_PROJECT")
+        - "EDIT/DELETE" options available if user who created the project is in session.
+        - Button/link on listed user takes you to individual's profile ("SHOW_ONE_USER").
+
+        PROJECT PAGE
+        ("SHOW_ONE_PROJECT") Display relevant project info.
+        - "EDIT/DELETE" options available if user who created the project is in session.
+        Display  Project information with Project Name
+        Show Project Help Needed
+
+        EDIT/UPDATE PROJECT
+        - Pre-populated edit/update form that defaults to original data if validations are not met.
+
+        PROFILE PAGE
+        - If USER is NOT IN SESSION:
+            ("SHOW_ONE_USER") Displays relevant reg info for individual user.
+            ("SHOW_ALL_PROJECTS") listed by that user.
+        - If USER is IN SESSION:
+            ("SHOW_ONE_USER") displays relevant reg info for user as ("UPDATE_PROFILE") form.
+            ("SHOW_ALL_PROJECTS") listed by that user, with "EDIT/DELETE" options..
+
+                Validations:
+                Usernames must not exist
+                Password Requirements
+                Password and Confirm Password not same
+                Name length requirements
+                Require all fields be populated.
+    }
+
+MVP Responsibilities: 
+    { 
+        Mario: Front-End Design / GitHub workflow; 
+        Veronica Mendez: Front-End (initial HTML and Bootstrap setup, logo design)/ Back-end (CRUD structure); 
+        Jonathan Campbell - Back-End / Database
+    }
+
+Stretch Goal and Responsibilities: 
+    { 
+        Veronica Mendez: Many-to-many relationships 
+            - "SAVE_PROJECT" (as in, FAVORITES or LIKES), and "DELETE_SAVED_PROJECT"; to be displayed in profile only if "USER_IN_SESSION";
+            - "JOIN_PROJECT" - allows user to join another user's project "TEAM". Initial status "PENDING"-project creator "ACCEPTS" or "DECLINES" "JOIN_REQUEST"; "PROJECTS_JOINED" list displayed in user's profile and viewable by any user; "LEAVE_PROJECT" option only if "USER_IN_SESSION";
+            - For user registration, REGEX URL validation for GitHub user link.
+            -"UPDATE_USER_PW" form
+        Jonathan Campbell: 
+            - "FILE_UPLOAD" option
+            - "SEARCH" option
+            - many-to-many db collaboration
+    }
+
+Stretchier Stretch Goals:
+    {
+        AJAX - API connection to populate user profile page.
+        AJAX - API connection to include: "Login with GitHub Account" option.
+        Add a "CONNECTIONS" page for user-to-user communication/chat
+        Add advanced search options
+        ADMIN OPTION for accepting JOIN_REQUESTS that auto-updates "TEAM_MEMBERS" display.
+    }

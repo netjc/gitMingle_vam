@@ -54,6 +54,7 @@ class Project:
             one_project.project_creator=user.User(parse_user_data(record))
             all_projects.append(one_project)
         return all_projects
+    
 # --GET ALL FTs END-----------------------------------
 
 # ******** FOR SEARCH - GET ALL PROJECTS BY LANGUAGE USED *********
