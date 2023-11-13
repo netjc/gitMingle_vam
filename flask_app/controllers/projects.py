@@ -130,6 +130,30 @@ def delete_fav(id):
     project.Project.delete_saved_project(id)
     return redirect(f"/users/profile/{session['logged_in_id']}")
 
+# *********** JOIN PROJECT ***********
+@app.route("/projects/join_project/<int:id>")
+def join_project_team(id):
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")        
+        return redirect("/users")
+    data={
+        "project_id":id,
+        "user_id":session['logged_in_id']
+    }
+    project.Project.join_team(data)
+    return redirect(f"/users/profile/{session['logged_in_id']}")
+
+# ******** DELETE MEMBER / LEAVE PROJECT *********
+@app.route("/projects/delete_member/<int:id>")
+def leave_team(id):
+    if "logged_in_id" not in session:
+        flash("You must be logged in to view the requested page.", "login_required")        
+        return redirect("/users")
+    
+    data={"id": id}
+    project.Project.delete_member(id)
+    return redirect(f"/users/profile/{session['logged_in_id']}")
+
 
 # search by languages_used
 

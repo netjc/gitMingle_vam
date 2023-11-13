@@ -102,9 +102,20 @@ class User:
             WHERE users.id=%(id)s;
             """
         results = connectToMySQL(cls.db).query_db(query, data )
-        print (results)
         return results
 
+# ******** GET USER WITH PROJECTS USER HAS JOINED*********** 
+    @classmethod
+    def get_user_with_joined_projects(cls,data):
+        query="""
+            SELECT * FROM users 
+            JOIN team_members on users.id=team_members.user_id 
+            JOIN projects ON team_members.project_id=projects.id 
+            WHERE users.id=%(id)s;
+            """
+        results = connectToMySQL(cls.db).query_db(query, data )
+        return results
+    
 # ******** SHOW ALL USERS *********
     @classmethod
     def get_all(cls):

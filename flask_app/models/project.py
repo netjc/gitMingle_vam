@@ -134,7 +134,26 @@ class Project:
             WHERE project_id=%(id)s;
         """
         data={"id": id}
-        return connectToMySQL(cls.db).query_db(query, data)    
+        return connectToMySQL(cls.db).query_db(query, data)
+    
+# ******** JOIN TEAM/ REQUEST TO JOIN (DEFAULT STATUS IS "PENDING" ) *********
+    @classmethod
+    def join_team(cls, data):
+        query="""
+            INSERT INTO team_members (project_id, user_id, member_type, status, created_at, updated_at) 
+            VALUES (%(project_id)s, %(user_id)s, "NONE", "PENDING", NOW(), NOW());
+        """
+        return connectToMySQL(cls.db).query_db(query, data)
+    
+# ******** DELETE TEAM MEMBER / LEAVE TEAM *********
+    @classmethod
+    def delete_member(cls, id):
+        query="""
+            DELETE FROM team_members
+            WHERE project_id=%(id)s;
+        """
+        data={"id": id}
+        return connectToMySQL(cls.db).query_db(query, data)
 
 
 # -- STATIC METHODS BELOW -----------------------------------------------------------
