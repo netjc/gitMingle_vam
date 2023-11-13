@@ -44,7 +44,7 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <form class="w-100 h-100 d-flex flex-column justify-content-between" action="/projects/update_project" method="post">
+            <form class="w-100 h-100 d-flex flex-column justify-content-between" action="/projects/update_project" method="post" enctype="multipart/form-data">
                 <div class="w-100 d-flex flex-column">
                     <div class="w-100 d-flex pb-1 align-items-center">
                         <label class="w-25 form-label" for="project_name">Project Name: </label>
@@ -83,6 +83,11 @@
                     <div class="w-100 d-flex pb-1 align-items-center">
                         <label class="w-25 form-label" for="languages_used">Languages Used: </label>
                         <input class="form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type="text" style="font-size: .8rem; font-weight: bold;" name="languages_used" value="{{project_to_update.languages_used}}">
+                    </div>
+
+                    <div class="w-100 d-flex pb-1 align-items-center">
+                        <label class="w-25 form-label" for="languages_used">Upload File: </label>
+                        <input class="form-control bg-light-subtle text-primary pt-1 px-1 border-1 shadow-sm" type="file" accept="image/*" style="font-size: .8rem; font-weight: bold;" name="file">
                     </div>
 
                     <input type="hidden" name="id" value="{{project_to_update.id}}">

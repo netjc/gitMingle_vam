@@ -12,6 +12,7 @@ from os.path import join, dirname, realpath
 UPLOAD_FOLDER = "static/images"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
 # ******** ROOT ROUTE *********
 @app.route("/users/dashboard/<int:id>")
 def user_page(id):
@@ -81,7 +82,10 @@ def project_update():
         "id": request.form['id']
     }
     project.Project.update_project(request.form)
-
+    #File upload
+    file = request.files['file']
+    if file.filename != '':
+        file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'],request.form['project_name']))
     flash("Project successfully updated!", "project_update_success")
     return redirect(f"/users/dashboard/{session['logged_in_id']}")
 
