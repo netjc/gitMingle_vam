@@ -12,6 +12,10 @@ from os.path import join, dirname, realpath
 UPLOAD_FOLDER = "static/images"
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+@app.context_processor
+def handle_context():
+    return dict(os=os)
+
 
 # ******** ROOT ROUTE *********
 @app.route("/users/dashboard/<int:id>")

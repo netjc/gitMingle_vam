@@ -38,7 +38,11 @@
             <h2> Full Description: {{project1.long_description}} </h2><br>
             <h2> Project Languages Used: {{project1.languages_used}} </h2>
             <h2> Need Help With: {{project1.help_needed}} </h2><br>
-            <img class="file_upload_img" src="../../static/images/{{project1.project_name}}" alt="Please upload your project photo">
+
+            {%  set url="flask_app/static/images/"+project1.project_name %}
+            {% if os.path.exists(url) %}
+                <img class="file_upload_img" src="../../static/images/{{project1.project_name}}" alt="Please upload your project photo">
+            {% endif %}
             <p class="w-100">Listed by: <a href="/users/profile/{{project1.user_id}}">{{project1.project_creator.f_name}}</a> on {{project1.created_at}}</p>
 
                 {% if project1.user_id == session['logged_in_id'] %}
@@ -47,8 +51,6 @@
                     <a class="btn btn-danger ms-3" style="font-size: .8rem;" href="/projects/delete_project/{{project1.id}}">DELETE </a>
                 </div>
                 {% endif %}
-
-
             <div class="w-100 d-flex justify-content-between align-items-center bg-light-subtle mt-5">
                 <a class="w-50 btn btn-dark me-2" href="/projects/favorites/{{project1.id}}">Save Project</a><br>
                 <a class="w-50 btn btn-dark ms-2" href="/projects/join_project/{{project1.id}}">Join Team</a><br>
